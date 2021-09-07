@@ -1,0 +1,15 @@
+{
+    "name": "Android12-Checker",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Android_12_Developer_Preview_logo.svg",
+    "repository": "https://github.com/etahamad/Android-12-Checker",
+    "success_url": "https://t.me/etahamad",
+    "stack": "container",
+    "env": {
+      "BOT_TOKEN": {
+        "description": "Your bot token, get it form @BotFather."
+      },
+      "CHAT_ID": {
+        "description": "Channel or Chat ID use /id to get it."
+      }
+    }
+  }

@@ -12,7 +12,17 @@ import requests
 import time
 import subprocess
 import sys
+import dotenv
+import os
 
+dotenv.load_dotenv('config.env')
+
+def telegram_bot_sendtext(bot_message):
+   bot_token = os.environ.get("BOT_TOKEN", 0)
+   bot_chatID = os.environ.get("CHAT_ID", 0)
+   send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
+   response = requests.get(send_text)
+   return response.json()
 
 def check_app(name):
     ret = which(name) is not None
@@ -22,13 +32,6 @@ def check_app(name):
 
 
 def main():
-    if not check_app('nyancat'):
-        print('Please install \'nyancat\'! Exiting.')
-        sys.exit()
-    term = input('Enter your terminal cmd (Eg. deepin-terminal, konsole): ')
-    if not check_app(term):
-        sys.exit()
-
     url = 'https://android.googlesource.com/platform/manifest/+refs'
     matching = []
 
@@ -42,12 +45,10 @@ def main():
             tag_list.append(tag)
         matching = [s for s in tag_list if 'android-12' in s or 'android12' in s]
         if len(matching) > 0:
-            print('[!] ANDROID 12 IS HERE!')
-            print('[!] Result: {}'.format(matching))
+            telegram_bot_sendtext("ANDROID 12 IS HERE!")
         else:
-            print('[*] No Android 12 (yet) 😕')
-            print('[*] Sleep time! 😴')
-            time.sleep(10 * 60)  # Wait for 10 minutes
+            telegram_bot_sendtext("No Android 12 (yet) 😕")
+            time.sleep(60 * 60)  # Wait for 60 minutes
     try:
         from subprocess import DEVNULL
     except ImportError:
