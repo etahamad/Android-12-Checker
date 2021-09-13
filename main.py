@@ -18,8 +18,8 @@ import os
 dotenv.load_dotenv('config.env')
 
 def telegram_bot_sendtext(bot_message):
-   bot_token = os.environ.get("BOT_TOKEN", 0)
-   bot_chatID = os.environ.get("CHAT_ID", 0)
+   bot_token = os.environ['BOT_TOKEN']
+   bot_chatID = os.environ['CHAT_ID']
    send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
    response = requests.get(send_text)
    return response.json()
