@@ -49,13 +49,6 @@ def main():
         else:
             telegram_bot_sendtext("No Android 12 (yet) 😕")
             time.sleep(60 * 60)  # Wait for 60 minutes
-    try:
-        from subprocess import DEVNULL
-    except ImportError:
-        import os
-        DEVNULL = open(os.devnull, 'wb')
-    subprocess.Popen([term, '-e', 'nyancat'], stdout=DEVNULL, stderr=subprocess.STDOUT)
-
 
 if __name__ == '__main__':
     main()
