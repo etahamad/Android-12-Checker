@@ -46,6 +46,7 @@ def main():
         matching = [s for s in tag_list if 'android-12' in s or 'android12' in s]
         if len(matching) > 0:
             telegram_bot_sendtext("ANDROID 12 IS HERE!")
+            exit()
         else:
             telegram_bot_sendtext("No Android 12 (yet) 😕")
             time.sleep(60 * 60)  # Wait for 60 minutes
